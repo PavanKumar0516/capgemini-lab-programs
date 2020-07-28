@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+            <bean id="sbu" class="com.capg.program3.Sbu">
+    <property name="sbuCode" value="1"></property>
+    <property name="sbuName" value="pavan kumar"></property>
+    <property name="subHead" value="Head"></property>
+       <property name="empList">
+       <list>
+          <ref bean="employee" />
+       </list>
+       </property> 
+        </bean>
+    <bean id="employee" class="com.capg.program3.Employee">
+    <property name="employeeId" value="1"></property>
+    <property name="employeeName" value="varun"></property>
+    <property name="salary" value="500000.00"></property>
+    
+    </bean>
+    </beans>
