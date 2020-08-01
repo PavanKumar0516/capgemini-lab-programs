@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.capg.springJPA.model.Student;
+import com.capg.springJPA.exception.StudentAgeException;
+import com.capg.springJPA.exception.StudentAlreadyExists;
+import com.capg.springJPA.exception.StudentNotFoundException;
+import com.capg.springJPA.model.Students;
 import com.capg.springJPA.service.StudentService;
 
 @RestController
@@ -20,27 +23,27 @@ public class StudentController {
 	StudentService service;
 	
 	@PostMapping("/student")
-	public Student addStudent(@RequestBody Student s1) {
+	public Students addStudent(@RequestBody Students s1)throws StudentAlreadyExists, StudentAgeException  {
 		return service.addStudent(s1);
 	}
 	
 	@GetMapping("/student/id/{id}")
-	public Student getStudent(@PathVariable int id) {
+	public Students getStudent(@PathVariable int id)throws StudentNotFoundException {
 		return service.getStudent(id);
 	}
 	
 	@GetMapping("/students")
-	public List<Student> getAllStudents(){
+	public List<Students> getAllStudents(){
 		return service.getAllStudents();
 	}
 	
 	@DeleteMapping("/student/id/{id}")
-	public void deleteStudent(@PathVariable int id) {
+	public void deleteStudent(@PathVariable int id)throws StudentNotFoundException {
 		service.deleteStudent(id);
 	}
 	
 	@PutMapping("/student")
-	public Student updateStudent(@RequestBody Student s1) {
+	public Students updateStudent(@RequestBody Students s1)throws StudentNotFoundException {
 		return service.updateStudent(s1);
 	}
 
